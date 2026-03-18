@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ENHYPEN IS 7 — The Bond Is Unbreakable</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#121212;--bg2:#0d0d0d;--bg3:#1a1a1a;--orange:#FF8C00;--orange2:#FFA533;--orange-dim:rgba(255,140,0,0.15);--orange-border:rgba(255,140,0,0.25);--text:#F0EAE0;--muted:rgba(240,234,224,0.45);--line:rgba(255,140,0,0.12);--glass:rgba(255,255,255,0.035);--glass2:rgba(255,140,0,0.06);}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;cursor:none;}
+#cur{position:fixed;width:8px;height:8px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:screen;}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(255,140,0,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s linear;}
+body:not(:hover) #cur,body:not(:hover) #cur-r{opacity:0;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:800;opacity:.35;}
+.sr{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.sr.in{opacity:1;transform:translateY(0);}
+.sr-l{opacity:0;transform:translateX(-36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.sr-l.in{opacity:1;transform:translateX(0);}
+.sr-r{opacity:0;transform:translateX(36px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);}
+.sr-r.in{opacity:1;transform:translateX(0);}
+.glass{background:var(--glass);border:1px solid var(--orange-border);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+.kr{font-family:'Noto Sans KR',sans-serif;}
+.eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--orange);font-weight:600;}
+.section-heading{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;line-height:1;color:#fff;}
+nav{position:fixed;top:0;left:0;right:0;z-index:600;padding:1.1rem 2rem;background:rgba(8,8,8,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:5px;color:#fff;}
+.nav-logo span{color:var(--orange);}
+.nav-link{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,224,.45);transition:color .3s;cursor:none;}
+.nav-link:hover{color:var(--orange);}
+.nav-cta{background:var(--orange);color:#080808;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:2px;cursor:none;transition:all .3s;}
+.nav-cta:hover{background:var(--orange2);box-shadow:0 8px 30px rgba(255,140,0,.4);}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:120px;padding-bottom:80px;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 90% 70% at 50% 0%,rgba(255,140,0,.12) 0%,transparent 65%),radial-gradient(ellipse 50% 50% at 15% 80%,rgba(255,140,0,.06) 0%,transparent 60%),linear-gradient(180deg,#080808 0%,#0a0704 50%,#080808 100%);}
+.hero-grid{position:absolute;inset:0;z-index:2;background-image:linear-gradient(rgba(255,140,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,140,0,.04) 1px,transparent 1px);background-size:72px 72px;}
+.hero-video-wrap{position:absolute;inset:0;z-index:1;overflow:hidden;}
+.hero-video{position:absolute;top:60%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.55) saturate(.7);}
+.hero-video-tint{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(255,100,0,.12) 0%,transparent 60%),linear-gradient(180deg,rgba(8,8,8,.15) 0%,rgba(8,8,8,.35) 100%);}
+.hero-overlay{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(8,8,8,.2) 0%,rgba(8,8,8,.4) 50%,rgba(8,8,8,.85) 100%);}
+.scanline{position:absolute;width:100%;height:1.5px;z-index:4;background:linear-gradient(90deg,transparent,rgba(255,140,0,.5),transparent);animation:scan 5s linear infinite;pointer-events:none;}
+@keyframes scan{0%{top:0;opacity:1}95%{opacity:.4}100%{top:100%;opacity:0}}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.2rem,13vw,11rem);color:var(--orange);letter-spacing:2px;line-height:.92;text-shadow:0 0 60px rgba(255,140,0,.4),0 0 120px rgba(255,140,0,.15);animation:titlePulse 3s ease-in-out infinite;}
+@keyframes titlePulse{0%,100%{text-shadow:0 0 40px rgba(255,140,0,.4),0 0 100px rgba(255,140,0,.15);}50%{text-shadow:0 0 80px rgba(255,140,0,.7),0 0 160px rgba(255,140,0,.3),0 0 240px rgba(255,140,0,.08);}}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+.hero-subtitle{font-size:clamp(.85rem,2vw,1.15rem);color:rgba(240,234,224,.65);max-width:560px;line-height:1.75;}
+.pulse-btn{position:relative;background:var(--orange);color:#080808;font-weight:700;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;padding:1rem 2.5rem;border:none;cursor:none;border-radius:2px;overflow:hidden;transition:all .35s;}
+.pulse-btn::before{content:'';position:absolute;inset:-3px;border-radius:4px;background:var(--orange);z-index:-1;animation:btnPulse 2.2s ease-out infinite;opacity:0;}
+@keyframes btnPulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.6);opacity:0}}
+.pulse-btn:hover{background:var(--orange2);transform:translateY(-3px);box-shadow:0 20px 50px rgba(255,140,0,.45);}
+.scroll-pill{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.scroll-line{width:1px;height:56px;background:linear-gradient(180deg,transparent,var(--orange));animation:scrollAnim 2s ease-in-out infinite;}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.stat-num{font-family:'Bebas Neue',sans-serif;color:var(--orange);text-shadow:0 0 20px rgba(255,140,0,.4);}
+.tl-track{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(255,140,0,.5) 15%,rgba(255,140,0,.5) 85%,transparent);transform:translateX(-50%);}
+.tl-dot{position:absolute;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--bg);box-shadow:0 0 16px rgba(255,140,0,.8);z-index:10;}
+.tl-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(255,140,0,.3);animation:dotRing 2s ease-out infinite;}
+@keyframes dotRing{0%{transform:scale(1);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.tl-card{transition:all .4s cubic-bezier(.16,1,.3,1);}
+.tl-card:hover{border-color:rgba(255,140,0,.5)!important;background:rgba(255,140,0,.07)!important;transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 40px rgba(255,140,0,.08);}
+.tl-year{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;color:var(--orange);letter-spacing:2px;text-shadow:0 0 20px rgba(255,140,0,.3);}
+.tl-badge{display:inline-flex;align-items:center;background:rgba(255,140,0,.12);border:1px solid rgba(255,140,0,.25);color:var(--orange);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2px;font-weight:600;}
+.petition-btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--orange);color:#080808;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;padding:1.1rem 3.5rem;border-radius:3px;cursor:none;position:relative;overflow:hidden;transition:all .35s;box-shadow:0 0 40px rgba(255,140,0,.3);}
+.petition-btn::before{content:'';position:absolute;inset:-4px;border-radius:5px;background:var(--orange);z-index:-1;animation:petPulse 2s ease-out infinite;opacity:0;}
+@keyframes petPulse{0%{transform:scale(1);opacity:.4}100%{transform:scale(1.4);opacity:0}}
+.petition-btn:hover{background:var(--orange2);transform:translateY(-4px);box-shadow:0 28px 70px rgba(255,140,0,.55);}
+.tag-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,140,0,.07);border:1px solid rgba(255,140,0,.2);color:var(--text);font-size:.78rem;padding:.5rem 1rem;border-radius:2px;cursor:none;transition:all .25s;font-weight:400;}
+.tag-pill:hover{background:rgba(255,140,0,.18);border-color:var(--orange);color:#fff;transform:translateY(-2px);}
+.tag-pill.copied{border-color:#22c55e!important;color:#22c55e!important;background:rgba(34,197,94,.1)!important;}
+.copy-btn{display:inline-flex;align-items:center;gap:.4rem;background:transparent;border:1px solid rgba(255,140,0,.35);color:var(--orange);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:2px;cursor:none;transition:all .3s;}
+.copy-btn:hover{background:var(--orange);color:#080808;border-color:var(--orange);}
+.copy-btn.done{border-color:#22c55e!important;color:#22c55e!important;}
+.email-category-label{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:3px;color:var(--orange);margin-bottom:.65rem;display:flex;align-items:center;gap:.65rem;}
+.email-category-label::after{content:'';flex:1;height:1px;background:rgba(255,140,0,.15);}
+.email-chip{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,140,0,.12);border:1px solid rgba(255,140,0,.45);color:#F0EAE0;font-size:1rem;font-family:'Outfit',monospace;padding:.7rem 1.3rem;border-radius:2px;cursor:none;transition:all .25s;letter-spacing:.03em;font-weight:600;}
+.email-chip:hover{background:rgba(255,140,0,.25);border-color:var(--orange);color:#fff;transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,140,0,.2);}
+.email-chip.copied{border-color:#22c55e!important;color:#22c55e!important;background:rgba(34,197,94,.12)!important;}
+.email-chip-icon{width:14px;height:14px;color:var(--orange);flex-shrink:0;transition:color .25s;}
+.email-chip:hover .email-chip-icon{color:#fff;}
+.tmpl-tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem;}
+.tmpl-tab{font-family:'Bebas Neue',sans-serif;font-size:.8rem;letter-spacing:2px;padding:.45rem 1.1rem;border-radius:2px;cursor:none;transition:all .25s;border:1px solid rgba(255,140,0,.2);color:rgba(255,140,0,.5);background:transparent;}
+.tmpl-tab:hover{border-color:rgba(255,140,0,.5);color:var(--orange);}
+.tmpl-tab.active{background:var(--orange);color:#080808;border-color:var(--orange);}
+.tmpl-panel{display:none;}
+.tmpl-panel.active{display:block;}
+.tmpl-subject{font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;font-weight:700;}
+.tmpl-subject-val{font-size:1rem;color:#fff;font-weight:600;background:rgba(255,140,0,.09);border:1px solid rgba(255,140,0,.3);padding:.7rem 1rem;border-radius:2px;margin-bottom:.9rem;line-height:1.55;}
+textarea.tmpl-body{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#E8E2D8;font-family:'Outfit',sans-serif;font-size:.95rem;line-height:1.85;resize:none;outline:none;padding:1.2rem;border-radius:2px;width:100%;transition:border-color .3s;height:240px;}
+textarea.tmpl-body:focus{border-color:rgba(255,140,0,.55);}
+textarea.tmpl-body.kr-font{font-family:'Noto Sans KR',sans-serif;}
+.target-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,140,0,.08);border:1px solid rgba(255,140,0,.2);color:rgba(255,140,0,.7);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.22rem .6rem;border-radius:2px;font-weight:600;}
+.member-card{position:relative;overflow:hidden;cursor:none;border-radius:4px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;}
+.member-card:hover{transform:translateY(-6px);box-shadow:0 0 0 1px var(--orange),0 24px 60px rgba(255,140,0,.2);}
+.member-inner{aspect-ratio:3/4;position:relative;overflow:hidden;}
+.member-img-area{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.member-photo{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) brightness(.75);transition:filter .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);}
+.member-card:hover .member-photo{filter:grayscale(0%) brightness(.88);transform:scale(1.07);}
+.member-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;}
+.member-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,8,8,.98) 100%);z-index:2;transition:background .4s;}
+.member-card:hover .member-overlay{background:linear-gradient(180deg,transparent 15%,rgba(255,140,0,.08) 60%,rgba(8,8,8,.98) 100%);}
+.member-glow{position:absolute;inset:0;z-index:3;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,140,0,0);transition:box-shadow .4s;}
+.member-card:hover .member-glow{box-shadow:inset 0 0 0 1px rgba(255,140,0,.5),inset 0 0 40px rgba(255,140,0,.06);}
+.member-info{position:absolute;bottom:0;left:0;right:0;z-index:4;padding:1.2rem;}
+.member-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:#fff;}
+.member-role{font-size:.62rem;color:rgba(255,140,0,.7);letter-spacing:.2em;text-transform:uppercase;font-weight:500;}
+.heeseung-card{border:1px solid rgba(255,140,0,.35)!important;}
+.gallery-track{display:flex;gap:1rem;width:max-content;animation:galleryScroll 30s linear infinite;will-change:transform;}
+.gallery-track:hover{animation-play-state:paused;}
+@keyframes galleryScroll{0%{transform:translateX(0)}100%{transform:translateX(calc(-736px * 6 - 1rem * 6))}}
+.gallery-img-wrap{flex-shrink:0;width:450px;height:280px;overflow:hidden;border-radius:4px;border:1px solid var(--orange-border);position:relative;cursor:none;transition:border-color .4s,box-shadow .4s;}
+.gallery-img-wrap:hover{border-color:rgba(255,140,0,.6);box-shadow:0 0 30px rgba(255,140,0,.15);}
+.gallery-img-wrap img{width:100%;height:100%;object-fit:contain;filter:brightness(.75) saturate(.8);transition:filter .4s,transform .4s;}
+.gallery-img-wrap:hover img{filter:brightness(.9) saturate(1.1);transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,8,8,.7) 100%);}
+.gallery-caption{position:absolute;bottom:.75rem;left:.75rem;right:.75rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,140,0,.7);}
+.unity-section{position:relative;overflow:hidden;}
+.unity-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;z-index:0;pointer-events:none;}
+.unity-letter{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.12rem;color:rgba(240,234,224,.88);line-height:2;}
+.unity-letter::first-letter{font-family:'DM Serif Display',serif;font-size:4.2rem;line-height:.8;float:left;margin-right:.1em;color:var(--orange);text-shadow:0 0 20px rgba(255,140,0,.4);}
+.letter-wrap{background:radial-gradient(ellipse 80% 60% at 50% -20%,rgba(255,140,0,.05) 0%,transparent 70%),var(--glass);border:1px solid var(--orange-border);}
+.pull-quote{border-left:2px solid var(--orange);padding-left:1.5rem;font-family:'DM Serif Display',serif;font-style:italic;font-size:1.15rem;color:rgba(240,234,224,.85);line-height:1.8;}
+.footer-line{height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);}
+#toast{position:fixed;bottom:1.8rem;right:1.8rem;z-index:9000;background:#111;border:1px solid rgba(34,197,94,.4);color:#22c55e;font-size:.78rem;letter-spacing:.06em;padding:.7rem 1.4rem;border-radius:3px;display:flex;align-items:center;gap:.5rem;transform:translateY(80px);opacity:0;transition:all .4s cubic-bezier(.16,1,.3,1);}
+#toast.show{transform:translateY(0);opacity:1;}
+.o-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,140,0,.15),transparent);}
+.red-dash{width:44px;height:2px;background:var(--orange);box-shadow:0 0 8px rgba(255,140,0,.6);}
+textarea{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);color:rgba(240,234,224,.6);font-family:'Outfit',sans-serif;font-size:.78rem;line-height:1.75;resize:none;outline:none;padding:1rem;border-radius:2px;width:100%;transition:border-color .3s;}
+textarea:focus{border-color:rgba(255,140,0,.35);}
+.sr-only{position:absolute;left:-9999px;}
+.archive-guide{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+@media(max-width:640px){.archive-guide{grid-template-columns:1fr;}}
+.archive-guide-card{background:rgba(255,140,0,.05);border:1px solid rgba(255,140,0,.2);border-radius:4px;padding:1rem 1.25rem;}
+.media-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:580px){.media-two-col{grid-template-columns:1fr;}}
+@media(max-width:768px){.nav-links{display:none;}.hero-title{font-size:clamp(4rem,22vw,8rem);}.tl-track{left:18px;}.tl-dot{left:18px;}}
+.parallax-layer{will-change:transform;}
+@media(max-width:768px){.padlet-embed iframe{height:70vh!important;}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+<div id="toast">
+  <i data-lucide="check-circle" style="width:15px;height:15px;"></i>
+  <span id="toast-text">Text Copied to Clipboard</span>
+</div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">ENHYPEN IS <span>7</span></a>
+  <div class="nav-links hidden md:flex items-center gap-8">
+    <a href="#timeline" class="nav-link">Timeline</a>
+    <a href="#action" class="nav-link">Act Now</a>
+    <a href="#members" class="nav-link">Members</a>
+    <a href="#gallery" class="nav-link">OT7</a>
+    <a href="#unity" class="nav-link">Unity</a>
+    <a href="#archive7" class="nav-link">Archive</a>
+  </div>
+  <a href="https://www.change.org/p/allow-heeseung-to-pursue-solo-activities-without-leaving-enhypen" target="_blank" class="nav-cta">View Petition</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-video-wrap">
+    <video id="hero-video" class="hero-video" autoplay muted loop playsinline poster="images/ot7-hero.jpg">
+      <source src="images/background-video.mp4" type="video/mp4"/>
+    </video>
+    <div class="hero-video-tint"></div>
+  </div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-overlay"></div>
+  <div class="scanline"></div>
+  <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+    <div style="opacity:0;animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .05s forwards;">
+      <span class="eyebrow inline-flex items-center gap-3">
+        <span style="width:32px;height:1px;background:var(--orange);display:inline-block;"></span>
+        The Bond Is Unbreakable
+        <span style="width:32px;height:1px;background:var(--orange);display:inline-block;"></span>
+      </span>
+    </div>
+    <h1 class="hero-title parallax-layer" id="hero-title" style="margin-top:.6rem;opacity:0;animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .18s forwards;">ENHYPEN<br/>IS 7</h1>
+    <p class="hero-subtitle mx-auto mt-5" style="opacity:0;animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .34s forwards;">The bond of seven is unbreakable. Demand transparency for Heeseung and the future of ENHYPEN.</p>
+    <div class="flex items-center justify-center gap-10 md:gap-20 mt-8" style="opacity:0;animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .48s forwards;">
+      <div>
+        <div class="stat-num text-4xl md:text-5xl">2M+</div>
+        <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Signatures</div>
+      </div>
+      <div style="width:1px;height:44px;background:rgba(255,140,0,.2);"></div>
+      <div>
+        <div class="stat-num text-4xl md:text-5xl">7</div>
+        <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">Always Seven</div>
+      </div>
+      <div style="width:1px;height:44px;background:rgba(255,140,0,.2);"></div>
+      <div>
+        <div class="stat-num text-4xl md:text-5xl">∞</div>
+        <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);">ENGENEs</div>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8" style="opacity:0;animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .6s forwards;">
+      <a href="https://www.change.org/p/allow-heeseung-to-pursue-solo-activities-without-leaving-enhypen" target="_blank" class="pulse-btn">📋 View The Petition</a>
+      <a href="#action" style="font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(255,255,255,.1);padding:.85rem 2rem;border-radius:2px;transition:all .3s;cursor:none;"
+         onmouseenter="this.style.borderColor='rgba(255,140,0,.3)';this.style.color='rgba(240,234,224,.8)'"
+         onmouseleave="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='var(--muted)'">Take Action ↓</a>
+    </div>
+  </div>
+  <div class="scroll-pill">
+    <div class="scroll-line"></div>
+    <span style="font-size:.58rem;letter-spacing:.25em;color:rgba(255,140,0,.4);text-transform:uppercase;">Scroll</span>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- TIMELINE -->
+<section id="timeline" class="py-32 px-6" style="background:var(--bg);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-10px;left:-10px;right:-10px;bottom:-10px;z-index:0;">
+    <img src="images/Lee Heeseung.jpg" alt="" style="width:calc(100% + 20px);height:calc(100% + 20px);object-fit:cover;object-position:center center;opacity:0.55;filter:grayscale(20%) brightness(0.65);display:block;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,8,0.45) 0%,rgba(8,8,8,0.35) 50%,rgba(8,8,8,0.45) 100%);"></div>
+  </div>
+  <div class="max-w-5xl mx-auto" style="position:relative;z-index:1;">
+    <div class="text-center mb-20 sr">
+      <span class="eyebrow">The Events — Documented</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 class="section-heading text-5xl md:text-7xl mt-2">TRUTH<br/>TIMELINE</h2>
+      <p style="color:var(--muted);font-size:.85rem;max-width:480px;margin:.75rem auto 0;line-height:1.75;">A verified record of the events that shook the ENGENE fandom — because transparency demands documentation.</p>
+    </div>
+    <div class="relative">
+      <div class="tl-track hidden md:block"></div>
+      <div style="display:flex;flex-direction:column;gap:3.5rem;">
+        <div class="md:grid md:grid-cols-2 md:gap-16 items-start relative">
+          <div style="position:absolute;top:1.5rem;" class="tl-dot hidden md:block"></div>
+          <div class="md:text-right sr-l">
+            <span class="tl-badge">February 2026 · The Promise</span>
+            <div class="glass tl-card p-6 mt-3" style="border-radius:4px;">
+              <div class="tl-year">FEB 2026</div>
+              <h3 style="font-size:1rem;font-weight:600;color:#fff;margin:.4rem 0 .6rem;">Video Call Fan Signing</h3>
+              <p style="color:var(--muted);font-size:.83rem;line-height:1.75;">In a 1:1 fan call, Heeseung confirms preparation for the upcoming Europe tour, stating:</p>
+              <p style="font-size:.85rem;line-height:1.75;margin:.6rem 0;padding:.75rem 1rem;border-left:2px solid var(--orange);background:rgba(255,140,0,.05);color:var(--orange);font-style:italic;">"I'm so excited to see European ENGENEs soon. We are preparing something very special for the tour as 7."</p>
+              <p style="color:var(--muted);font-size:.78rem;line-height:1.65;margin-top:.5rem;">Proof that group plans were active and prioritized by the artist just weeks before the announcement.</p>
+              <div style="margin-top:.75rem;display:flex;align-items:center;gap:.5rem;">
+                <i data-lucide="video" style="width:13px;height:13px;color:var(--orange);flex-shrink:0;"></i>
+                <span style="font-size:.65rem;color:rgba(255,140,0,.6);letter-spacing:.1em;">SOURCE: 1:1 VIDEO CALL FAN SIGNING</span>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+        <div class="md:grid md:grid-cols-2 md:gap-16 items-start relative">
+          <div style="position:absolute;top:1.5rem;background:#E8001E;box-shadow:0 0 20px rgba(232,0,30,.9);" class="tl-dot hidden md:block"></div>
+          <div class="hidden md:block"></div>
+          <div class="sr-r">
+            <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
+              <span class="tl-badge" style="background:rgba(232,0,30,.1);border-color:rgba(232,0,30,.3);color:#FF4560;">March 10, 2026 · The Contradiction</span>
+              <span style="display:inline-flex;align-items:center;gap:.3rem;background:rgba(232,0,30,.12);border:1px solid rgba(232,0,30,.35);color:#FF4560;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .6rem;border-radius:2px;font-weight:700;"><i data-lucide="alert-triangle" style="width:11px;height:11px;"></i> CONFLICT</span>
+            </div>
+            <div class="glass tl-card p-6 mt-3" style="border-radius:4px;border-color:rgba(232,0,30,.2)!important;">
+              <div class="tl-year" style="color:#FF4560;text-shadow:0 0 20px rgba(232,0,30,.4);">MAR 10</div>
+              <h3 style="font-size:1rem;font-weight:600;color:#fff;margin:.4rem 0 .6rem;">Official Departure Announcement &amp; Weverse Letter</h3>
+              <p style="color:var(--muted);font-size:.83rem;line-height:1.75;">BELIFT LAB claims a <span style="color:var(--orange);">&ldquo;distinct musical vision&rdquo;</span> led to the exit. However, Heeseung's personal Weverse letter clarifies:</p>
+              <p style="font-size:.85rem;line-height:1.75;margin:.6rem 0;padding:.75rem 1rem;border-left:2px solid #FF4560;background:rgba(232,0,30,.05);color:rgba(240,234,224,.85);font-style:italic;">&ldquo;I've made the decision to follow the <strong style="color:var(--orange);text-decoration:underline;text-underline-offset:3px;">direction the company has suggested</strong>.&rdquo;</p>
+              <div style="margin-top:.75rem;padding:.75rem;background:rgba(232,0,30,.05);border:1px solid rgba(232,0,30,.15);border-radius:2px;">
+                <p style="font-size:.75rem;color:rgba(255,69,96,.85);line-height:1.6;">&#9888; <strong>Discrepancy:</strong> BELIFT LAB framed this as a voluntary creative decision, yet Heeseung's own words indicate he followed the company's direction — not his own.</p>
+              </div>
+              <div style="margin-top:.75rem;display:flex;align-items:center;gap:.5rem;">
+                <i data-lucide="file-text" style="width:13px;height:13px;color:#FF4560;flex-shrink:0;"></i>
+                <span style="font-size:.65rem;color:rgba(255,69,96,.6);letter-spacing:.1em;">SOURCE: BELIFT LAB STATEMENT + HEESEUNG WEVERSE LETTER</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="md:grid md:grid-cols-2 md:gap-16 items-start relative">
+          <div style="position:absolute;top:1.5rem;" class="tl-dot hidden md:block"></div>
+          <div class="md:text-right sr-l">
+            <span class="tl-badge">March 11–12, 2026 · The Global Response</span>
+            <div class="glass tl-card p-6 mt-3" style="border-radius:4px;">
+              <div class="tl-year">MAR 11</div>
+              <h3 style="font-size:1rem;font-weight:600;color:#fff;margin:.4rem 0 .6rem;">"ENHYPEN IS 7" Petition Surge</h3>
+              <p style="color:var(--muted);font-size:.83rem;line-height:1.75;">Within <span style="color:var(--orange);font-weight:600;">24 hours</span> of the announcement, the global petition surpasses <span style="color:var(--orange);font-weight:600;">700,000 signatures</span>. By March 12, the movement reaches over <span style="color:var(--orange);font-weight:700;font-size:.95rem;">1 Million voices</span> demanding transparency and the return of Heeseung.</p>
+              <div style="margin-top:.75rem;display:flex;align-items:center;gap:.5rem;">
+                <i data-lucide="trending-up" style="width:13px;height:13px;color:var(--orange);flex-shrink:0;"></i>
+                <span style="font-size:.65rem;color:rgba(255,140,0,.6);letter-spacing:.1em;">1M+ SIGNATURES IN UNDER 48 HOURS</span>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:block"></div>
+        </div>
+        <div class="md:grid md:grid-cols-2 md:gap-16 items-start relative">
+          <div style="position:absolute;top:1.5rem;" class="tl-dot hidden md:block"></div>
+          <div class="hidden md:block"></div>
+          <div class="sr-r">
+            <span class="tl-badge">Ongoing</span>
+            <div class="glass tl-card p-6 mt-3" style="border-radius:4px;">
+              <div class="tl-year" style="color:rgba(255,140,0,.5);">NOW</div>
+              <h3 style="font-size:1rem;font-weight:600;color:#fff;margin:.4rem 0 .6rem;">The Fight Continues</h3>
+              <p style="color:var(--muted);font-size:.83rem;line-height:1.75;">ENGENEs continue to email, petition, and campaign across every platform. The demand is clear: transparency, Heeseung's voice, and the protection of a seven-member group. This page is part of that ongoing, peaceful, coordinated effort.</p>
+              <div style="margin-top:.75rem;"><a href="#action" class="copy-btn" style="font-size:.65rem;display:inline-flex;">Join the Campaign →</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- ACTION CENTER -->
+<section id="action" class="py-32 px-6" style="background:var(--bg2);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:0;overflow:hidden;">
+    <img src="images/download.jpg" alt="" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:auto;height:100%;min-width:100%;object-fit:cover;object-position:center top;opacity:0.75;filter:brightness(0.85);display:block;"/>
+    <div style="position:absolute;inset:0;background:rgba(15,15,15,0.25);"></div>
+  </div>
+  <div class="max-w-5xl mx-auto" style="position:relative;z-index:1;">
+    <div class="text-center mb-16 sr">
+      <span class="eyebrow">Make Your Voice Heard</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 class="section-heading text-5xl md:text-7xl mt-2">ACTION<br/>CENTER</h2>
+    </div>
+    <div class="text-center mb-16 sr">
+      <p style="color:var(--muted);font-size:.9rem;max-width:480px;margin:0 auto 2rem;line-height:1.75;">Over 2 million voices documented. The petition is submitted — view it as a record of the global demand for transparency.</p>
+      <a href="https://www.change.org/p/allow-heeseung-to-pursue-solo-activities-without-leaving-enhypen" target="_blank" class="petition-btn">
+        <i data-lucide="file-text" style="width:22px;height:22px;"></i>VIEW PETITION
+      </a>
+      <p style="font-size:.68rem;color:rgba(255,140,0,.4);letter-spacing:.15em;text-transform:uppercase;margin-top:1rem;">change.org · <span class="live-sig-count">2M+</span> signatures documented</p>
+    </div>
+    <div class="o-line mb-16"></div>
+
+    <!-- HASHTAGS -->
+    <div class="sr mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <i data-lucide="hash" style="width:18px;height:18px;color:var(--orange);"></i>
+        <span class="eyebrow">Campaign Hashtags</span>
+        <button class="copy-btn ml-auto" onclick="copyAllTags(this)"><i data-lucide="copy" style="width:13px;height:13px;"></i>Copy All</button>
+      </div>
+      <div id="dynamic-tags" style="display:flex;flex-wrap:wrap;gap:.5rem;">
+        <span class="tag-pill" onclick="copyTag('#BELIFTLABTREATENHYPENBETTER',this)">#BELIFTLABTREATENHYPENBETTER</span>
+        <span class="tag-pill" onclick="copyTag('#HEESEUNG',this)">#HEESEUNG</span>
+        <span class="tag-pill" onclick="copyTag('#ENHYPENIS7',this)">#ENHYPENIS7</span>
+        <span class="tag-pill" onclick="copyTag('#COMEBACKHEESEUNG',this)">#COMEBACKHEESEUNG</span>
+        <span class="tag-pill" onclick="copyTag('#Alwayswithyou',this)">#Alwayswithyou</span>
+        <span class="tag-pill kr" onclick="copyTag('#엔하이픈은_일곱이다',this)">#엔하이픈은_일곱이다</span>
+        <span class="tag-pill kr" onclick="copyTag('#빌리프랩_설명해라',this)">#빌리프랩_설명해라</span>
+        <span class="tag-pill" onclick="copyTag('#BEACCOUNTABLE_BELFIT',this)">#BEACCOUNTABLE_BELFIT</span>
+        <span class="tag-pill kr" onclick="copyTag('#엔하이픈은_7명이다',this)">#엔하이픈은_7명이다</span>
+        <span class="tag-pill" onclick="copyTag('#LET_HEESEUNG_DO_BOTH',this)">#LET_HEESEUNG_DO_BOTH</span>
+        <span class="tag-pill" onclick="copyTag('#RESPECT_ENHYPEN',this)">#RESPECT_ENHYPEN</span>
+        <span class="tag-pill" onclick="copyTag('#HEESEUNG_STAYS',this)">#HEESEUNG_STAYS</span>
+      </div>
+      <textarea id="all-tags" class="sr-only" readonly>#BELIFTLABTREATENHYPENBETTER #HEESEUNG #ENHYPENIS7 #COMEBACKHEESEUNG #Alwayswithyou #엔하이픈은_일곱이다 #빌리프랩_설명해라 #BEACCOUNTABLE_BELFIT #엔하이픈은_7명이다 #LET_HEESEUNG_DO_BOTH #RESPECT_ENHYPEN #HEESEUNG_STAYS</textarea>
+      <p style="font-size:.65rem;color:var(--muted);margin-top:.75rem;display:flex;align-items:center;gap:.4rem;"><i data-lucide="mouse-pointer-click" style="width:12px;height:12px;"></i>Tap any hashtag to copy individually</p>
+    </div>
+    <div class="o-line mb-16"></div>
+
+    <!-- EMAIL DIRECTORY -->
+    <div class="sr mb-16">
+      <div class="flex items-center gap-3 mb-8">
+        <i data-lucide="send" style="width:18px;height:18px;color:var(--orange);"></i>
+        <span class="eyebrow">Target Email Directory</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.6rem;">
+        <div>
+          <div class="email-category-label"><i data-lucide="shield" style="width:13px;height:13px;"></i>Management &amp; Legal</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+            <span class="email-chip" onclick="copyEmail('protect@belift.kr',this)"><i data-lucide="copy" class="email-chip-icon"></i>protect@belift.kr</span>
+            <span class="email-chip" onclick="copyEmail('communication@hybecorp.com',this)"><i data-lucide="copy" class="email-chip-icon"></i>communication@hybecorp.com</span>
+          </div>
+        </div>
+        <div>
+          <div class="email-category-label"><i data-lucide="trending-up" style="width:13px;height:13px;"></i>Investors</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+            <span class="email-chip" onclick="copyEmail('ir@hybecorp.com',this)"><i data-lucide="copy" class="email-chip-icon"></i>ir@hybecorp.com</span>
+          </div>
+        </div>
+        <div>
+          <div class="email-category-label"><i data-lucide="radio" style="width:13px;height:13px;"></i>Media &amp; Press</div>
+          <div class="media-two-col">
+            <div style="background:rgba(255,140,0,.04);border:1px solid rgba(255,140,0,.15);border-radius:4px;padding:.85rem 1rem;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:2px;color:rgba(255,140,0,.65);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem;"><i data-lucide="globe" style="width:11px;height:11px;"></i>Global Media</div>
+              <div style="display:flex;flex-direction:column;gap:.4rem;">
+                <span class="email-chip" onclick="copyEmail('jeff.benjamin@billboard.com',this)"><i data-lucide="copy" class="email-chip-icon"></i>jeff.benjamin@billboard.com</span>
+                <span class="email-chip" onclick="copyEmail('newsdesk@nme.com',this)"><i data-lucide="copy" class="email-chip-icon"></i>newsdesk@nme.com</span>
+              </div>
+            </div>
+            <div style="background:rgba(255,140,0,.04);border:1px solid rgba(255,140,0,.15);border-radius:4px;padding:.85rem 1rem;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:2px;color:rgba(255,140,0,.65);margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem;"><i data-lucide="newspaper" style="width:11px;height:11px;"></i><span class="kr">한국 미디어</span></div>
+              <div style="display:flex;flex-direction:column;gap:.4rem;">
+                <span class="email-chip" onclick="copyEmail('dispatch@dispatch.co.kr',this)"><i data-lucide="copy" class="email-chip-icon"></i>dispatch@dispatch.co.kr</span>
+                <span class="email-chip" onclick="copyEmail('jtbceditor@jtbc.co.kr',this)"><i data-lucide="copy" class="email-chip-icon"></i>jtbceditor@jtbc.co.kr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:.65rem;color:var(--muted);margin-top:.9rem;display:flex;align-items:center;gap:.4rem;"><i data-lucide="mouse-pointer-click" style="width:12px;height:12px;"></i>Click any address to copy instantly</p>
+    </div>
+    <div class="o-line mb-16"></div>
+
+    <!-- EMAIL TEMPLATES -->
+    <div class="sr">
+      <div class="flex items-center gap-3 mb-7">
+        <i data-lucide="mail" style="width:18px;height:18px;color:var(--orange);"></i>
+        <span class="eyebrow">Protest Email Templates</span>
+      </div>
+      <div class="tmpl-tabs">
+        <button class="tmpl-tab active" onclick="switchTab('t1',this)">🇬🇧 Corporate</button>
+        <button class="tmpl-tab" onclick="switchTab('t2',this)">🇰🇷 기업 (KR)</button>
+        <button class="tmpl-tab" onclick="switchTab('t3',this)">🇬🇧 Media Pitch</button>
+        <button class="tmpl-tab" onclick="switchTab('t4',this)">🇰🇷 미디어 (KR)</button>
+      </div>
+      <div id="tmpl-t1" class="tmpl-panel active glass p-5 md:p-7" style="border-radius:4px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.1rem;">
+          <div><div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span style="font-weight:600;color:#fff;font-size:.95rem;">Corporate Protest — English</span><span class="target-badge"><i data-lucide="send" style="width:9px;height:9px;"></i>BELIFT LAB · HYBE</span></div><div style="font-size:.65rem;color:var(--muted);">Send to: protect@belift.kr · communication@hybecorp.com</div></div>
+          <button class="copy-btn" onclick="copyTemplate('tmpl-subj-t1','tmpl-body-t1',this)"><i data-lucide="copy" style="width:13px;height:13px;"></i>Copy Full Email</button>
+        </div>
+        <div class="tmpl-subject">Subject Line</div>
+        <div id="tmpl-subj-t1" class="tmpl-subject-val">FORMAL GRIEVANCE: Demand for Transparency Regarding HEESEUNG's Status</div>
+        <div class="tmpl-subject">Body</div>
+        <textarea id="tmpl-body-t1" class="tmpl-body" readonly>To the Management of BELIFT LAB and HYBE,
+
+We are writing to demand immediate transparency regarding the recent announcement of Heeseung's departure from ENHYPEN's activities. On March 10th, the company cited a "suggested direction" for this change. However, we have documented evidence of the artist confirming his excitement for the OT7 tour as recently as February.
+
+We demand:
+
+A clear, transparent explanation of the "company suggestion" mentioned in the official notice.
+
+Evidence that the artist's original intent to remain in the group was respected.
+
+The immediate implementation of a Concurrent Activity Model (Solo + Group) that allows Heeseung to remain in ENHYPEN.
+
+Until a logical explanation is provided, we will view this as a forced removal. ENHYPEN is 7.
+
+Sincerely,
+ENGENE (The Global Fandom of ENHYPEN)</textarea>
+      </div>
+      <div id="tmpl-t2" class="tmpl-panel glass p-5 md:p-7" style="border-radius:4px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.1rem;">
+          <div><div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span style="font-weight:600;color:#fff;font-size:.95rem;" class="kr">기업 항의 — 한국어</span><span class="target-badge"><i data-lucide="send" style="width:9px;height:9px;"></i>빌리프랩 · 하이브</span></div><div style="font-size:.65rem;color:var(--muted);">전송: protect@belift.kr · communication@hybecorp.com</div></div>
+          <button class="copy-btn" onclick="copyTemplate('tmpl-subj-t2','tmpl-body-t2',this)"><i data-lucide="copy" style="width:13px;height:13px;"></i>전체 복사</button>
+        </div>
+        <div class="tmpl-subject">제목</div>
+        <div id="tmpl-subj-t2" class="tmpl-subject-val kr">엔하이픈 희승 관련 불투명한 의사결정에 대한 해명 및 정보 공개 요구</div>
+        <div class="tmpl-subject">본문</div>
+        <textarea id="tmpl-body-t2" class="tmpl-body kr-font" readonly>빌리프랩 및 하이브 경영진 귀하,
+
+엔하이픈 희승 군의 활동 배제 공지와 관련하여 소속사의 불투명한 의사결정 과정에 대해 공식적으로 문제를 제기합니다. 3월 10일 공지된 '회사가 제안한 방향'이라는 설명은 지난 2월 아티스트가 직접 7인 체제 활동에 대한 의지를 표명했던 사실과 정면으로 배치됩니다.
+
+우리는 다음 사항에 대한 투명한 답변을 강력히 요구합니다:
+
+위버스 공지문에 언급된 '회사가 제안한 방향'에 대한 구체적인 내용과 배경 설명.
+
+아티스트의 그룹 잔류 의사가 존중되었는지에 대한 명확한 근거 제시.
+
+솔로 활동과 그룹 활동을 병행할 수 있는 '활동 병행 모델'의 즉각적인 검토 및 도입.
+
+소속사가 납득 가능한 수준의 정보를 제공할 때까지 우리는 이번 사안을 부당한 멤버 배제로 간주하고 대응할 것입니다.
+
+엔하이픈을 지지하는 엔진(ENGENE) 드림</textarea>
+      </div>
+      <div id="tmpl-t3" class="tmpl-panel glass p-5 md:p-7" style="border-radius:4px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.1rem;">
+          <div><div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span style="font-weight:600;color:#fff;font-size:.95rem;">Media Pitch — English</span><span class="target-badge"><i data-lucide="send" style="width:9px;height:9px;"></i>Billboard · NME</span></div><div style="font-size:.65rem;color:var(--muted);">Send to: jeff.benjamin@billboard.com · newsdesk@nme.com</div></div>
+          <button class="copy-btn" onclick="copyTemplate('tmpl-subj-t3','tmpl-body-t3',this)"><i data-lucide="copy" style="width:13px;height:13px;"></i>Copy Full Email</button>
+        </div>
+        <div class="tmpl-subject">Subject Line</div>
+        <div id="tmpl-subj-t3" class="tmpl-subject-val">INVESTIGATIVE TIP: Corporate Contradiction and Artist Autonomy at HYBE/BELIFT LAB</div>
+        <div class="tmpl-subject">Body</div>
+        <textarea id="tmpl-body-t3" class="tmpl-body" readonly>Dear Editorial Team,
+
+I am reaching out to highlight a serious lack of corporate transparency at HYBE's subsidiary, BELIFT LAB, regarding the group ENHYPEN.
+
+While the company claims the removal of member Heeseung from group activities followed "company suggestions," fan-captured evidence from February shows the artist was actively preparing for a 7-member tour. This discrepancy raises significant questions about artist autonomy and corporate gaslighting in the K-pop industry.
+
+We believe this story of "Corporate Management vs. Artist Autonomy" is of significant public interest. We demand accountability for the 2M+ fans currently protesting this decision.
+
+Respectfully,
+ENGENE (Global Advocacy Group)</textarea>
+      </div>
+      <div id="tmpl-t4" class="tmpl-panel glass p-5 md:p-7" style="border-radius:4px;">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.1rem;">
+          <div><div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.4rem;"><span style="font-weight:600;color:#fff;font-size:.95rem;" class="kr">미디어 제보 — 한국어</span><span class="target-badge"><i data-lucide="send" style="width:9px;height:9px;"></i>Dispatch · JTBC</span></div><div style="font-size:.65rem;color:var(--muted);">전송: dispatch@dispatch.co.kr · jtbceditor@jtbc.co.kr</div></div>
+          <button class="copy-btn" onclick="copyTemplate('tmpl-subj-t4','tmpl-body-t4',this)"><i data-lucide="copy" style="width:13px;height:13px;"></i>전체 복사</button>
+        </div>
+        <div class="tmpl-subject">제목</div>
+        <div id="tmpl-subj-t4" class="tmpl-subject-val kr">[제보] 하이브-빌리프랩의 아티스트 활동 배제 관련 불투명한 의사결정 및 모순 제보</div>
+        <div class="tmpl-subject">본문</div>
+        <textarea id="tmpl-body-t4" class="tmpl-body kr-font" readonly>[기자님/보도국] 관계자분께,
+
+하이브(HYBE) 산하 레이블 빌리프랩의 불투명한 운영과 아티스트 멤버 배제 행위에 대한 중대한 사안을 제보합니다.
+
+빌리프랩은 멤버 희승의 투어 제외를 '아티스트의 선택'인 것처럼 공지했으나, 아티스트는 2월까지도 7인 활동에 대한 강한 의지를 표명해 왔습니다. 특히 '회사가 제안한 방향에 따르기로 했다'는 표현은 이번 결정이 아티스트의 자율적 선택이 아닌 소속사의 압박에 의한 것이라는 의혹을 뒷받침합니다.
+
+아티스트의 원래 의사가 기업의 경영 논리에 의해 묵살된 것은 아닌지, 그리고 이 과정에서 발생한 소속사 공지의 모순점에 대해 심층적인 취재를 요청드립니다.
+
+엔진(ENGENE) 제보단 드림</textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- MEMBER GRID -->
+<section id="members" class="py-32 px-6" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 sr">
+      <span class="eyebrow">Irreplaceable · Complete · Seven</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 class="section-heading text-5xl md:text-7xl mt-2">THE SEVEN</h2>
+      <p style="color:var(--muted);font-size:.83rem;max-width:420px;margin:.75rem auto 0;">Hover each member. Every card glows in solidarity.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3 sr">
+      <div class="member-card glass heeseung-card"><div class="member-inner"><div class="member-img-area"><img src="images/heeseung.jpg" alt="Heeseung" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(255,140,0,.15) 0%,transparent 70%),linear-gradient(160deg,#1a0e00,#0d0d0d);z-index:-1;"><div style="width:62px;height:62px;border-radius:50%;border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(255,140,0,.5);"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--orange);">H</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name" style="color:var(--orange);">HEESEUNG</div><div class="member-role">Vocalist · Main Dancer</div><div style="margin-top:.4rem;"><span style="font-size:.58rem;color:var(--orange);border:1px solid rgba(255,140,0,.35);padding:.18rem .5rem;letter-spacing:.1em;text-transform:uppercase;">We Stand Here</span></div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/jay.jpg" alt="Jay" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">J</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">JAY</div><div class="member-role">Vocalist · Rapper</div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/jake.jpg" alt="Jake" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">J</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">JAKE</div><div class="member-role">Vocalist · Dancer</div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/sunghoon.jpg" alt="Sunghoon" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">S</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">SUNGHOON</div><div class="member-role">Vocalist · Visual</div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/sunoo.jpg" alt="Sunoo" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">S</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">SUNOO</div><div class="member-role">Vocalist · Sunshine</div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/jungwon.jpg" alt="Jungwon" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">J</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">JUNGWON</div><div class="member-role">Leader · Vocalist</div></div></div></div>
+      <div class="member-card glass"><div class="member-inner"><div class="member-img-area"><img src="images/niki.jpg" alt="Ni-ki" class="member-photo" onerror="this.style.display='none'"/><div class="member-placeholder" style="position:absolute;inset:0;background:linear-gradient(160deg,#0e1018,#090909);z-index:-1;"><div style="width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:rgba(255,255,255,.4);">N</span></div></div></div><div class="member-overlay"></div><div class="member-glow"></div><div class="member-info"><div class="member-name">NI-KI</div><div class="member-role">Main Dancer · Maknae</div></div></div></div>
+    </div>
+    <p style="text-align:center;font-size:.65rem;color:rgba(255,140,0,.25);letter-spacing:.2em;text-transform:uppercase;margin-top:1.5rem;" class="sr">Hover each member · All seven belong together</p>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-32" style="background:var(--bg2);overflow:hidden;">
+  <div class="px-6 max-w-6xl mx-auto mb-12">
+    <div class="text-center sr">
+      <span class="eyebrow">OT7 Forever</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 class="section-heading text-5xl md:text-7xl mt-2">UNITY<br/>GALLERY</h2>
+      <p style="color:var(--muted);font-size:.83rem;max-width:420px;margin:.75rem auto 0;">Seven voices, one soul. A visual testimony to what was, is, and must continue to be.</p>
+    </div>
+  </div>
+  <div style="overflow:hidden;position:relative;padding:0 0 1rem;" class="sr">
+    <div style="position:absolute;top:0;bottom:0;left:0;width:120px;background:linear-gradient(90deg,var(--bg2),transparent);z-index:10;pointer-events:none;"></div>
+    <div style="position:absolute;top:0;bottom:0;right:0;width:120px;background:linear-gradient(-90deg,var(--bg2),transparent);z-index:10;pointer-events:none;"></div>
+    <div class="gallery-track">
+      <div class="gallery-img-wrap"><img src="images/ot7-1.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1200,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">OT7 · Always</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-2.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#0d1018,#090909)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Seven As One</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-3.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#18100a,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Unbreakable Bond</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-4.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#0d1018,#090909)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">ENHYPEN 7</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-5.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#12100a,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Debut · Complete</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-6.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1200,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Our Seven Stars</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-1.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1200,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">OT7 · Always</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-2.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#0d1018,#090909)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Seven As One</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-3.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#18100a,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Unbreakable Bond</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-4.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#0d1018,#090909)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">ENHYPEN 7</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-5.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#12100a,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Debut · Complete</div></div>
+      <div class="gallery-img-wrap"><img src="images/ot7-6.jpg" alt="OT7" onerror="this.parentElement.style.background='linear-gradient(135deg,#1a1200,#0d0d0d)';this.style.display='none'"/><div class="gallery-overlay"></div><div class="gallery-caption">Our Seven Stars</div></div>
+    </div>
+  </div>
+  <div class="text-center mt-8 px-6">
+    <p style="font-size:.68rem;color:rgba(255,140,0,.35);letter-spacing:.2em;text-transform:uppercase;">Hover the gallery to pause · Seven moments · Seven memories</p>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- ARCHIVE OF 7 -->
+<section id="archive7" class="py-24 px-6" style="background:var(--bg);">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-10 sr">
+      <span class="eyebrow">Community Evidence Hub</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,7vw,4.5rem);letter-spacing:2px;line-height:1;color:#fff;">THE ARCHIVE OF 7:<br/><span style="color:var(--orange);">COMMUNITY EVIDENCE</span></h2>
+    </div>
+    <div class="archive-guide sr">
+      <div class="archive-guide-card">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--orange);margin-bottom:.4rem;">📋 CRITICAL EVIDENCE COLUMN</div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Use this column for fan call transcripts, Weverse screenshots, and official statement contradictions.</p>
+      </div>
+      <div class="archive-guide-card">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--orange);margin-bottom:.4rem;">🚛 PROTEST ACTION COLUMN</div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Use this column for truck protest photos, billboard sightings, and global fan action documentation.</p>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="padlet-embed" style="border:2px solid #FF8C00;border-radius:12px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#121212"><iframe src="https://padlet.com/embed/9557vqchooc54quc" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:800px;display:block;padding:0;margin:0"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="o-line"></div>
+
+<!-- UNITY & MOTIVATION -->
+<section id="unity" class="py-32 px-6 unity-section" style="background:var(--bg2);">
+  <video class="unity-bg-video" autoplay muted loop playsinline>
+    <source src="images/engene.mp4" type="video/mp4"/>
+  </video>
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,140,0,.07) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 50% 100%,rgba(255,140,0,.04) 0%,transparent 70%);"></div>
+  <div class="max-w-3xl mx-auto" style="position:relative;z-index:1;">
+    <div class="text-center mb-14 sr">
+      <span class="eyebrow">For Every ENGENE Worldwide</span>
+      <div class="red-dash mx-auto mt-3 mb-4"></div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,9vw,5.5rem);letter-spacing:2px;line-height:1;color:var(--orange);">A MESSAGE TO<br/>THE FANDOM</h2>
+    </div>
+    <div class="letter-wrap p-8 md:p-14 mb-20 sr" style="border-radius:6px;position:relative;overflow:hidden;">
+      <div style="position:absolute;bottom:-2rem;right:.5rem;font-family:'Bebas Neue',sans-serif;font-size:14rem;color:rgba(255,140,0,.04);pointer-events:none;line-height:1;user-select:none;">7</div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;">
+        <div style="width:40px;height:1px;background:var(--orange);flex-shrink:0;"></div>
+        <span style="font-size:.65rem;letter-spacing:.3em;color:rgba(255,140,0,.4);text-transform:uppercase;">March 2026 — To Every ENGENE</span>
+        <div style="flex:1;height:1px;background:rgba(255,140,0,.1);"></div>
+      </div>
+      <p class="unity-letter">ENGENE, we are the shield for all seven. While we fight to bring Heeseung back to the tour, our love for Jungwon, Jay, Jake, Sunghoon, Sunoo, and Ni-ki must remain louder than ever. We don't just fight for one; we fight for the bond they share. Stay strong, stay unified, and stay kind. We do this for them.</p>
+      <div class="pull-quote" style="margin-top:2.2rem;">"The loudest protest is a fandom that refuses to be divided. We are seven, and so we remain — always."</div>
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,140,0,.1);">
+        <p style="color:var(--muted);font-size:.78rem;margin-bottom:.4rem;">With unwavering love and fierce resolve,</p>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:4px;color:rgba(240,234,224,.8);">ENGENE — The Global ENHYPEN Fandom</p>
+        <p style="font-size:.65rem;color:rgba(255,140,0,.35);letter-spacing:.1em;margin-top:.3rem;">March 2026 · #ENHYPENIS7</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;padding:5rem 1.5rem 3rem;border-top:1px solid var(--orange);">
+  <div class="footer-line" style="margin-bottom:4rem;"></div>
+  <div class="max-w-5xl mx-auto">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;margin-bottom:3rem;">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;color:#fff;">ENHYPEN IS <span style="color:var(--orange);">7</span></div>
+        <p style="font-size:.65rem;letter-spacing:.25em;color:rgba(255,140,0,.35);text-transform:uppercase;margin-top:.25rem;">Always · Forever · Seven</p>
+      </div>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+        <a href="#timeline" class="nav-link">Timeline</a>
+        <a href="#action" class="nav-link">Act Now</a>
+        <a href="#members" class="nav-link">Members</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#unity" class="nav-link">Unity</a>
+        <a href="#archive7" class="nav-link">Archive</a>
+      </div>
+      <a href="https://www.change.org/p/allow-heeseung-to-pursue-solo-activities-without-leaving-enhypen" target="_blank" class="petition-btn" style="font-size:1rem;padding:.75rem 2rem;">📋 View Petition</a>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.04);padding-top:2rem;">
+      <p style="font-size:.78rem;color:rgba(255,255,255,.7);max-width:680px;line-height:1.75;">We fight for the 7th. We stand with the 6. ENHYPEN is a circle that cannot be broken.</p>
+    </div>
+    <div style="padding-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;">
+      <p style="font-size:.68rem;color:rgba(240,234,224,.2);">Fan-made page. Not affiliated with HYBE, BELIFT LAB, or ENHYPEN. Made with love by ENGENEs worldwide.</p>
+      <p style="font-size:.68rem;color:rgba(255,140,0,.25);">#ENHYPENIS7 · March 2026</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+const heroVideo = document.getElementById('hero-video');
+if (heroVideo) { heroVideo.muted = true; heroVideo.play().catch(()=>{ heroVideo.style.display='none'; }); }
+
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function loop(){ rx+=(mx-rx)*.11; ry+=(my-ry)*.11; curR.style.left=rx+'px'; curR.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button,.tag-pill,.member-card,.petition-btn,.pulse-btn,.copy-btn,.email-chip,.tmpl-tab').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cur.style.width='18px'; cur.style.height='18px'; curR.style.width='50px'; curR.style.height='50px'; });
+  el.addEventListener('mouseleave',()=>{ cur.style.width='8px'; cur.style.height='8px'; curR.style.width='32px'; curR.style.height='32px'; });
+});
+
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting){ const delay=parseFloat(entry.target.getAttribute('data-delay')||'0'); setTimeout(()=>entry.target.classList.add('in'),delay); revObs.unobserve(entry.target); }});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.sr,.sr-l,.sr-r').forEach(el=>revObs.observe(el));
+
+const memberCards = document.querySelectorAll('.member-card');
+memberCards.forEach((c,i)=>{ c.style.opacity='0'; c.style.transform='translateY(28px)'; c.style.transition=`opacity .6s ease ${i*.06}s,transform .6s ease ${i*.06}s,box-shadow .4s,border .3s`; });
+const membObs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ memberCards.forEach(c=>{ c.style.opacity='1'; c.style.transform='translateY(0)'; }); membObs.disconnect(); }}); },{threshold:.15});
+const membSec = document.getElementById('members');
+if(membSec) membObs.observe(membSec);
+
+const heroTitle = document.getElementById('hero-title');
+window.addEventListener('scroll',()=>{ if(heroTitle) heroTitle.style.transform=`translateY(${window.scrollY*.18}px)`; },{passive:true});
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-text').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+function copyText(text, onSuccess){
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(onSuccess).catch(()=>fallbackCopy(text,onSuccess));
+  } else {
+    fallbackCopy(text, onSuccess);
+  }
+}
+
+function fallbackCopy(text, onSuccess){
+  const ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;left:-9999px;top:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try{ document.execCommand('copy'); onSuccess(); } catch(e){ showToast('Copy failed — please copy manually'); }
+  document.body.removeChild(ta);
+}
+
+function copyEmail(email, el){
+  copyText(email, ()=>{
+    const orig=el.innerHTML;
+    el.innerHTML=`<i data-lucide="check" class="email-chip-icon"></i>${email}`;
+    el.classList.add('copied'); lucide.createIcons();
+    showToast('Text Copied to Clipboard ✓');
+    setTimeout(()=>{ el.innerHTML=orig; el.classList.remove('copied'); lucide.createIcons(); },1800);
+  });
+}
+
+function copyTemplate(subjId, bodyId, btn){
+  const subj=document.getElementById(subjId).textContent.trim();
+  const body=document.getElementById(bodyId).value.trim();
+  const orig=btn.innerHTML;
+  copyText('Subject: '+subj+'\n\n'+body, ()=>{
+    btn.innerHTML='<i data-lucide="check" style="width:13px;height:13px;"></i> Copied!';
+    btn.classList.add('done'); lucide.createIcons();
+    showToast('Text Copied to Clipboard ✓');
+    setTimeout(()=>{ btn.innerHTML=orig; btn.classList.remove('done'); lucide.createIcons(); },2200);
+  });
+}
+
+function switchTab(id, btn){
+  document.querySelectorAll('.tmpl-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tmpl-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tmpl-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function copyTag(text, el){
+  copyText(text, ()=>{
+    const orig=el.textContent;
+    el.textContent='✓ '+orig.replace('#','');
+    el.classList.add('copied');
+    showToast(text+' copied!');
+    setTimeout(()=>{ el.textContent=orig; el.classList.remove('copied'); },1600);
+  });
+}
+
+function copyAllTags(btn){
+  const text=document.getElementById('all-tags').value;
+  const orig=btn.innerHTML;
+  copyText(text, ()=>{
+    btn.innerHTML='<i data-lucide="check" style="width:13px;height:13px;"></i> All Copied!';
+    btn.classList.add('done'); lucide.createIcons();
+    showToast('All hashtags copied ✓');
+    setTimeout(()=>{ btn.innerHTML=orig; btn.classList.remove('done'); lucide.createIcons(); },2200);
+  });
+}
+</script>
+</body>
+</html>
